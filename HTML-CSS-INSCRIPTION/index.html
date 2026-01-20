@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Ateliers Universitaires</title>
+</head>
+<body>
+    <header class="hero-header">
+        <nav class="nav-container">
+            <div class="logo">Edu<span class="accent-text">Tech</span></div>
+            <ul class="nav-links">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Ateliers</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#" class="btn-login">Mon Compte</a></li>
+            </ul>
+        </nav>
+        
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="subtitle">Développez vos compétences</p>
+                <h1>Nos ateliers <span class="accent-text">inédits</span></h1>
+                <p class="description">Rejoignez-nous pour des sessions intensives et pratiques.</p>
+                <button class="button-cta">Nous rejoindre</button>
+            </div>
+        </div>
+    </header>
+    
+    <main class="main-container">
+        <section class="content-wrapper">
+            
+            <div class="workshops-section">
+                <h2>Programme des sessions</h2>
+                <div class="table-container">
+                    <table class="workshop-table">
+                        <thead>
+                            <tr>
+                                <th>Atelier</th>
+                                <th>Durée</th>
+                                <th>Niveau</th>
+                                <th>Prix</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pensée critique</strong></td>
+                                <td>6 heures</td>
+                                <td>Débutant</td>
+                                <td>120 dhs</td>
+                                <td>15 Fév 2025</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Art Oratoire</strong></td>
+                                <td>4 heures</td>
+                                <td>Intermédiaire</td>
+                                <td>150 dhs</td>
+                                <td>18 Fév 2025</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Gestion de Projet</strong></td>
+                                <td>2 jours</td>
+                                <td>Avancé</td>
+                                <td>300 dhs</td>
+                                <td>22 Fév 2025</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Cyber-sécurité 101</strong></td>
+                                <td>1 jour</td>
+                                <td>Débutant</td>
+                                <td>200 dhs</td>
+                                <td>01 Mar 2025</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Design Thinking</strong></td>
+                                <td>5 heures</td>
+                                <td>Tous</td>
+                                <td>Gratuit</td>
+                                <td>05 Mar 2025</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="form-card">
+                    <h2>Inscription Rapide</h2>
+                    <form action="#" method="post" class="signup-form">
+                        <div class="input-group">
+                            <label for="nom">Nom</label>
+                            <input type="text" name="nom" id="nom" required placeholder="Votre nom">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="prenom">Prénom</label>
+                            <input type="text" name="prenom" id="prenom" required placeholder="Votre prénom">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" required placeholder="exemple@email.com">
+                        </div>
+
+                        <div class="input-group half">
+                            <div>
+                                <label for="niveau">Niveau</label>
+                                <select name="niveau" id="niveau">
+                                    <option value="debutant">Débutant</option>
+                                    <option value="intermediaire">Intermédiaire</option>
+                                    <option value="avance">Avancé</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="birthday">Date</label>
+                                <input type="date" name="birthday" id="birthday">
+                            </div>
+                        </div>
+
+                        <div class="input-group checkbox-group">
+                            <p>Choix des ateliers :</p>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="atelier1"> Pensée critique
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="atelier2"> Art Oratoire
+                            </label>
+                        </div>
+
+                        <button type="submit" class="button-submit">Valider l'inscription</button>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 EduTech Fes. Tous droits réservés.</p>
+    </footer>
+</body>
+</html>

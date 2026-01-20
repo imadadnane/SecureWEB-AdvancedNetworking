@@ -1,0 +1,156 @@
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>TP SQL</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;max-width:900px;margin:24px auto;padding:0 16px;color:#111}
+    pre.sql{background:#f5f5f7;border:1px solid #e2e2e6;padding:12px;overflow:auto;border-radius:6px}
+    table{border-collapse:collapse;width:100%;margin:12px 0}
+    th,td{border:1px solid #ddd;padding:8px;text-align:left}
+    h1,h2{color:#0b5cff}
+    .note{font-size:0.95rem;color:#333;background:#f8fbff;padding:10px;border-left:4px solid #cfe0ff;border-radius:6px}
+    .small{font-size:0.9rem;color:#555}
+    a.filelink{color:#0b5cff}
+  </style>
+</head>
+<body>
+  <h1>TP SQL</h1>
+
+  <h2>1) Création de la base de données</h2>
+  <pre class="sql">CREATE DATABASE RestaurantDB;
+USE RestaurantDB;</pre>
+
+  <h2>2) Création des tables</h2>
+  <pre class="sql">CREATE TABLE Client (
+  idClient INT AUTO_INCREMENT PRIMARY KEY,
+  nom VARCHAR(50),
+  telephone VARCHAR(20)
+);
+
+CREATE TABLE TableRestaurant (
+  idTable INT AUTO_INCREMENT PRIMARY KEY,
+  numero INT,
+  capacite INT
+);
+
+CREATE TABLE Reservation (
+  idReservation INT AUTO_INCREMENT PRIMARY KEY,
+  idClient INT,
+  idTable INT,
+  dateReservation DATE,
+  heure TIME,
+  nombrePersonnes INT,
+  FOREIGN KEY (idClient) REFERENCES Client(idClient),
+  FOREIGN KEY (idTable) REFERENCES TableRestaurant(idTable)
+);</pre>
+
+  <h2>3) Insertion des données (exemples)</h2>
+  <pre class="sql">-- Clients (au moins 3)
+INSERT INTO Client (nom, telephone) VALUES
+('Imad', '060000001'),
+('Hamza', '060000002'),
+('Brahim', '060000003');
+
+-- Tables du restaurant (au moins 3)
+INSERT INTO TableRestaurant (numero, capacite) VALUES
+(1, 2),
+(2, 4),
+(3, 6);
+
+-- Réservations (au moins 5)
+INSERT INTO Reservation (idClient, idTable, dateReservation, heure, nombrePersonnes) VALUES
+(1, 2, '2025-11-20', '19:00:00', 4),  -- Imad
+(2, 3, '2025-11-20', '20:00:00', 5),  -- Hamza
+(1, 1, '2025-11-21', '18:30:00', 2),  -- Imad
+(3, 2, '2025-11-22', '21:00:00', 4),  -- Brahim
+(1, 3, '2025-11-23', '19:30:00', 6);  -- Imad</pre>
+
+  <h2>4) Requêtes SELECT simples (avec SQL)</h2>
+  <p><strong>1. Afficher tous les clients</strong></p>
+  <pre class="sql">SELECT * FROM Client;</pre>
+
+  <p><strong>2. Afficher toutes les tables du restaurant</strong></p>
+  <pre class="sql">SELECT * FROM TableRestaurant;</pre>
+
+  <p><strong>3. Afficher toutes les réservations</strong></p>
+  <pre class="sql">SELECT * FROM Reservation;</pre>
+
+  <h2>5) Requêtes avec conditions</h2>
+  <p><strong>4. Afficher les réservations du client nommé "Imad"</strong></p>
+  <pre class="sql">SELECT r.*
+FROM Reservation r
+JOIN Client c ON r.idClient = c.idClient
+WHERE c.nom = 'Sara';</pre>
+
+  <p><strong>5. Afficher les tables ayant une capacité supérieure ou égale à 4</strong></p>
+  <pre class="sql">SELECT * FROM TableRestaurant WHERE capacite >= 4;</pre>
+
+  <h2>6) Requêtes avec JOINTURE</h2>
+  <p><strong>6. Liste des réservations — nom du client, numéro de table, date et heure</strong></p>
+  <pre class="sql">SELECT r.idReservation,
+       c.nom AS client,
+       t.numero AS numeroTable,
+       r.dateReservation,
+       r.heure
+FROM Reservation r
+JOIN Client c ON r.idClient = c.idClient
+JOIN TableRestaurant t ON r.idTable = t.idTable;</pre>
+
+  <p><strong>7. Afficher les réservations triées par date puis par heure</strong></p>
+  <pre class="sql">SELECT r.idReservation, c.nom, t.numero, r.dateReservation, r.heure
+FROM Reservation r
+JOIN Client c ON r.idClient = c.idClient
+JOIN TableRestaurant t ON r.idTable = t.idTable
+ORDER BY r.dateReservation ASC, r.heure ASC;</pre>
+
+  <p><strong>8. Afficher les clients qui ont effectué plus d'une réservation</strong></p>
+  <pre class="sql">SELECT c.nom, COUNT(r.idReservation) AS nbReservations
+FROM Client c
+JOIN Reservation r ON c.idClient = r.idClient
+GROUP BY c.idClient, c.nom
+HAVING COUNT(r.idReservation) > 1;</pre>
+
+  <h2>7) Requête bonus — nombre total de réservations par jour</h2>
+  <pre class="sql">SELECT dateReservation, COUNT(*) AS totalReservations
+FROM Reservation
+GROUP BY dateReservation
+ORDER BY dateReservation;</pre>
+
+  <h2>Exemples de résultats attendus</h2>
+
+  <h3>Table <code>Client</code></h3>
+  <table>
+    <thead><tr><th>idClient</th><th>nom</th><th>telephone</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Imad</td><td>060000001</td></tr>
+      <tr><td>2</td><td>Hamza</td><td>060000002</td></tr>
+      <tr><td>3</td><td>Brahim</td><td>060000003</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Table <code>TableRestaurant</code></h3>
+  <table>
+    <thead><tr><th>idTable</th><th>numero</th><th>capacite</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>2</td></tr>
+      <tr><td>2</td><td>2</td><td>4</td></tr>
+      <tr><td>3</td><td>3</td><td>6</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Table <code>Reservation</code></h3>
+  <table>
+    <thead><tr><th>idReservation</th><th>idClient</th><th>idTable</th><th>dateReservation</th><th>heure</th><th>nombrePersonnes</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1</td><td>2</td><td>2025-11-20</td><td>19:00:00</td><td>4</td></tr>
+      <tr><td>2</td><td>2</td><td>3</td><td>2025-11-20</td><td>20:00:00</td><td>5</td></tr>
+      <tr><td>3</td><td>1</td><td>1</td><td>2025-11-21</td><td>18:30:00</td><td>2</td></tr>
+      <tr><td>4</td><td>3</td><td>2</td><td>2025-11-22</td><td>21:00:00</td><td>4</td></tr>
+      <tr><td>5</td><td>1</td><td>3</td><td>2025-11-23</td><td>19:30:00</td><td>6</td></tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Projet du réseau de l'Université Euromed Actuelle en utilisant le routage statique + Les protocoles DHCP et OSPF avec 3 Vlans(prof, étudiant, visiteur).

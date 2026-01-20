@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modules - Brahim Nakkar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --secondary: #8b5cf6;
+            --text: #1f2937;
+            --text-light: #6b7280;
+            --bg: #f9fafb;
+            --card-bg: #ffffff;
+            --border: #e5e7eb;
+            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-btn {
+            background: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .student-header {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .student-header h1 {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .student-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .modules-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .modules-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .modules-table thead {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .modules-table th {
+            padding: 1.2rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .modules-table tbody tr {
+            background: var(--bg);
+            transition: all 0.3s ease;
+        }
+
+        .modules-table tbody tr:nth-child(even) {
+            background: white;
+        }
+
+        .modules-table tbody tr:hover {
+            background: #e0e7ff;
+            transform: scale(1.01);
+        }
+
+        .modules-table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modules-table td a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .modules-table td a:hover {
+            color: var(--secondary);
+        }
+
+        .note {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-weight: 700;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .student-header {
+                padding: 1.5rem;
+            }
+
+            .student-header h1 {
+                font-size: 2rem;
+            }
+
+            .modules-section {
+                padding: 1.5rem;
+            }
+
+            .modules-table {
+                font-size: 0.9rem;
+            }
+
+            .modules-table th,
+            .modules-table td {
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="main.html" class="back-btn">← Retour</a>
+        
+        <div class="student-header">
+            <h1>Brahim Nakkar</h1>
+            <p>Liste des Modules - Année Scolaire 2025-2026</p>
+        </div>
+
+        <div class="modules-section">
+            <table class="modules-table">
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                        <th>Année Scolaire</th>
+                        <th>Note</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="Software engineering.html">Software Engineering</a></td>
+                        <td>2025-2026</td>
+                        <td><span class="note">18/20</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="Advanced Algorithms.html">Advanced Algorithms</a></td>
+                        <td>2025-2026</td>
+                        <td><span class="note">15/20</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="Advanced Networking.html">Advanced Networking</a></td>
+                        <td>2025-2026</td>
+                        <td><span class="note">12/20</span></td>
+                    </tr>
+                    <tr>
+                        <td><a href="WebSecure.html">WebSecure</a></td>
+                        <td>2025-2026</td>
+                        <td><span class="note">14/20</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
